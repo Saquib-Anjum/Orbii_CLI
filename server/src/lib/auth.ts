@@ -1,7 +1,7 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { prisma } from "./db.js";
-
+import { deviceAuthorization } from "better-auth/plugins"; 
 const githubClientId = process.env.GITHUB_CLIENT_ID;
 const githubClientSecret = process.env.GITHUB_CLIENT_SECRET;
 
@@ -21,4 +21,9 @@ export const auth = betterAuth({
       clientSecret: githubClientSecret,
     },
   },
+  plugins: [
+    deviceAuthorization({ 
+      verificationUri: "/device", 
+    }), 
+  ],
 });

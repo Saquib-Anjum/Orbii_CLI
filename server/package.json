@@ -1,37 +1,51 @@
 {
-  "name": "server",
+  "name": "orbii-cli",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-     "dev": "tsx watch src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "description": "Orbii CLI - A CLI Based AI Agent",
   "type": "module",
+  "bin": {
+    "orbii": "dist/cli/main.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "dev:cli": "tsx src/cli/main.ts",
+    "build": "tsc && shx chmod +x dist/cli/main.js",
+    "start": "node dist/index.js",
+    "start:cli": "node dist/cli/main.js",
+    "prepare": "npm run build"
+  },
+  "keywords": ["cli", "ai", "agent"],
+  "license": "ISC",
+  "engines": { "node": ">=20" },
   "dependencies": {
+    "@clack/prompts": "^1.9.0",
     "@prisma/adapter-pg": "^7.10.1",
     "@prisma/client": "^7.10.1",
     "bcrypt": "^6.0.0",
     "better-auth": "^1.7.27",
+    "boxen": "^9.0.0",
+    "chalk": "^6.0.1",
+    "commander": "^15.1.0",
     "cors": "^2.8.6",
     "dotenv": "^18.0.10",
     "express": "^5.3.0",
+    "figlet": "^1.13.0",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.12.3",
-    "pg": "^8.23.1"
+    "pg": "^8.23.1",
+    "yocto-spinner": "^1.2.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "@types/figlet": "^1.5.8",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^26.6.6",
     "@types/pg": "^8.23.1",
     "prisma": "^7.10.1",
+    "shx": "^0.4.0",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   }
